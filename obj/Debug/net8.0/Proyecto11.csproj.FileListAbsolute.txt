@@ -12,3 +12,4 @@ C:\Users\Supre\Desktop\Proyecto11\obj\Debug\net8.0\refint\Proyecto11.dll
 C:\Users\Supre\Desktop\Proyecto11\obj\Debug\net8.0\Proyecto11.pdb
 C:\Users\Supre\Desktop\Proyecto11\obj\Debug\net8.0\Proyecto11.genruntimeconfig.cache
 C:\Users\Supre\Desktop\Proyecto11\obj\Debug\net8.0\ref\Proyecto11.dll
+C:\Users\Supre\Desktop\Proyecto11\obj\Debug\net8.0\Proyecto11.sourcelink.json
