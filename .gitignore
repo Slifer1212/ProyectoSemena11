@@ -1,3 +1,30 @@
-# Ignore build output directories
+# Visual Studio Code
+.vscode/
+
+# Build results
 bin/
 obj/
+
+# User-specific files
+*.user
+*.rsuser
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Windows image file caches
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
