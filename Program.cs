@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Security.Claims;
 using System.Text;
 using System.Text.Json;
 using static System.Console;
@@ -38,7 +37,7 @@ class Program
                     .....";
             string[] opciones = { "1. Crear proyecto", "2. Ver lista de proyectos", "3. Agregar tarea a un proyecto",
                                    "4. Listar tareas de un proyecto", "5. Buscar un proyecto", "6. Buscar una tarea", 
-                                   "7. Eliminar Proyecto", "8. Eliminar Tarea", "9. Exportar a CSV","10. Salir" };
+                                   "7. Eliminar Proyecto", "8. Eliminar Tarea", "9. Exportar a CSV", "10. Salir" };
             Menu menuPrincipal = new Menu(prompt, opciones);
             int seleccionado = menuPrincipal.Run();
 
@@ -72,7 +71,7 @@ class Program
                     ExportarCSV();
                     break;
                 case 9:
-                return;
+                    return;
             }
         }
     }
@@ -88,8 +87,8 @@ class Program
             ReadKey();
             return;
         }
-        GuardarProyectos();
         proyectos.Add(new Proyecto(nombreProyecto));
+        SaveProjects();
         WriteLine($"Proyecto '{nombreProyecto}' creado exitosamente.");
         WriteLine("Presione cualquier tecla para continuar...");
         ReadKey();
@@ -133,7 +132,7 @@ class Program
             Write("Ingrese la descripción de la tarea: ");
             string tarea = ReadLine()!;
             proyectos[indiceProyecto - 1].Tareas.Add(tarea);
-            GuardarProyectos();
+            SaveProjects();
             WriteLine("Tarea agregada exitosamente.");
         }
         else
@@ -247,13 +246,12 @@ class Program
 
     static void EliminarProyecto()
     {
-        Clear();
         VerProyectos();
         Write("Seleccione el número del proyecto para eliminar: ");
         if (int.TryParse(ReadLine(), out int indiceProyecto) && indiceProyecto > 0 && indiceProyecto <= proyectos.Count)
         {
             proyectos.RemoveAt(indiceProyecto - 1);
-            GuardarProyectos();
+            SaveProjects();
             WriteLine("Proyecto eliminado exitosamente.");
         }
         else
@@ -288,7 +286,7 @@ class Program
             if (int.TryParse(ReadLine(), out int indiceTarea) && indiceTarea > 0 && indiceTarea <= proyecto.Tareas.Count)
             {
                 proyecto.Tareas.RemoveAt(indiceTarea - 1);
-                GuardarProyectos();
+                SaveProjects();
                 WriteLine("Tarea eliminada exitosamente.");
             }
             else
@@ -331,7 +329,7 @@ class Program
         ReadKey();
     }
 
-    static void GuardarProyectos()
+    static void SaveProjects()
     {
         string json = JsonSerializer.Serialize(proyectos, new JsonSerializerOptions { WriteIndented = true });
         File.WriteAllText("proyectos.json", json);
